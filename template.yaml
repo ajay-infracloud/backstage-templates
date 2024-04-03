@@ -83,8 +83,8 @@ spec:
       name: Starting GitHub action
       action: github:actions:dispatch
       input:
-        workflowId:  instance.yml # ID of GitHub action WorkFlow
-        repoUrl: 'github.com?repo=aws-ec2&owner=sagar0419'
+        workflowId:  create-ec2.yml # ID of GitHub action WorkFlow
+        repoUrl: 'github.com?repo=terraform-ec2&owner=ajay-infracloud'
         branchOrTagName: 'master'
         workflowInputs:
           instanceName: ${{ parameters.InstanceName }}
