@@ -85,7 +85,7 @@ spec:
       input:
         workflowId:  create-ec2.yml # ID of GitHub action WorkFlow
         repoUrl: 'github.com?repo=terraform-ec2&owner=ajay-infracloud'
-        branchOrTagName: 'master'
+        branchOrTagName: 'main'
         workflowInputs:
           instanceName: ${{ parameters.InstanceName }}
           awsRegion: ${{ parameters.Region }}
