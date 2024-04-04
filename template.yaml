@@ -53,7 +53,7 @@ spec:
 
         InstanceCount:
           title: Number of Instances
-          type: number
+          type: string
           description: Number Instnace to be created.
 
         action:
