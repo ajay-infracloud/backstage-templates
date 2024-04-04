@@ -15,7 +15,7 @@ spec:
          - InstanceName
          - Region
          - InstanceType
-         - Count
+         - InstanceCount
       properties:
         Environment:
           title: Environment.
@@ -51,12 +51,10 @@ spec:
             - t2.micro
             - t3.medium
 
-        Count:
+        InstanceCount:
           title: Number of Instances
           type: number
           description: Number Instnace to be created.
-          ui:options:
-            rows: 3 
 
         action:
           title: action
@@ -113,7 +111,7 @@ spec:
           instanceType: ${{ parameters.InstanceType }}
           action: ${{ parameters.action }}
           environment: ${{ parameters.Environment }}
-          instanceCount: ${{ parameters.Count }}
+          instanceCount: ${{ parameters.InstanceCount }}
 # # Registering new component in the catalog of backstage.
 #     - id: register
 #       name: Registering the new Component 
