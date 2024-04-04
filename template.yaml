@@ -11,17 +11,30 @@ spec:
   parameters:
     - title: EC2 Instance Creation
       required:
+         - Environment
          - InstanceName
          - Region
-         - InstanceType    
+         - InstanceType
+         - Count
       properties:
+        Environment:
+          title: Environment.
+          type: string
+          description: Environment
+          ui:autofocus: true
+          ui:options:
+            rows: 3
+          enum:
+            - Dev
+            - Stage
+            - Prod
+
         InstanceName:
           title: Instance Name.
           type: string
           description: Name of the Instnace to be created.
-          ui:autofocus: true
           ui:options:
-            rows: 5
+            rows: 3
 
         Region:
           title:  AWS Region
@@ -37,6 +50,14 @@ spec:
             - t2.small
             - t2.micro
             - t3.medium
+
+        Count:
+          title: Number of Instances
+          type: number
+          description: Number Instnace to be created.
+          ui:options:
+            rows: 3 
+
         action:
           title: action
           type: string
@@ -45,20 +66,20 @@ spec:
             - apply
             - destroy
 
-    - title: Choose a Repository Location
-      required:
-        - repoUrl
-      properties:
-        repoUrl:
-          title: Location of the repository
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - github.com
+    # - title: Choose a Repository Location
+    #   required:
+    #     - repoUrl
+    #   properties:
+    #     repoUrl:
+    #       title: Location of the repository
+    #       type: string
+    #       ui:field: RepoUrlPicker
+    #       ui:options:
+    #         allowedHosts:
+    #           - github.com
 
   steps:
-# Getting the all the files/details from the template
+    # Getting the all the files/details from the template
     - id: fetch-base
       name: Fetching Details from content folder
       action: fetch:template
@@ -91,7 +112,8 @@ spec:
           awsRegion: ${{ parameters.Region }}
           instanceType: ${{ parameters.InstanceType }}
           action: ${{ parameters.action }}
-
+          environment: ${{ parameters.Environment }}
+          instanceCount: ${{ parameters.Count }}
 # # Registering new component in the catalog of backstage.
 #     - id: register
 #       name: Registering the new Component 
@@ -101,10 +123,10 @@ spec:
 #         catalogInfoPath: '/component-info.yaml' # where the info of the catalog is stored.
 
 # Output links  are displayed to the user after the template execution.
-  output:
-    links:
-      - title: Repository
-        url: ${{ steps['publish'].output.remoteUrl }}
-      - title: Open in catalog
-        icon: catalog
-        entityRef: ${{ steps['register'].output.entityRef }}
+  # output:
+  #   links:
+  #     - title: Repository
+  #       url: ${{ steps['publish'].output.remoteUrl }}
+  #     - title: Open in catalog
+  #       icon: catalog
+  #       entityRef: ${{ steps['register'].output.entityRef }}
