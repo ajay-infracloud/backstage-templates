@@ -103,7 +103,8 @@ spec:
       action: github:actions:dispatch
       input:
         workflowId:  create-ec2.yml # ID of GitHub action WorkFlow
-        repoUrl: 'github.com?repo=terraform-ec2&owner=ajay-infracloud'
+        # repoUrl: 'github.com?repo=terraform-ec2&owner=ajay-infracloud'
+        repoUrl: 'github.com?repo=terraform-ec2&owner=amanjuneja5'
         branchOrTagName: 'main'
         workflowInputs:
           instanceName: ${{ parameters.InstanceName }}
